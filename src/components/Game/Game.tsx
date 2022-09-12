@@ -47,5 +47,5 @@ export const Game = () => {
     };
   }, [throttledHandleKeyDown]);
 
-  return <Board tiles={tiles} tileCountPerRow={tileCount} {...handlers}/>;
+  return <Board tiles={tiles} tileCountPerRow={tileCount}/>;
 };
