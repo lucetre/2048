@@ -3,9 +3,14 @@ import { useThrottledCallback } from "use-debounce";
 
 import { useGame } from "./hooks/useGame";
 import { Board, animationDuration, tileCount } from "../Board";
+import { useSwipeable } from "react-swipeable";
 
 export const Game = () => {
   const [tiles, moveLeft, moveRight, moveUp, moveDown] = useGame();
+
+  // const handlers = useSwipeable({
+  //   onSwiped: (eventData) => console.log("User Swiped!", eventData),
+  // });
 
   const handleKeyDown = (e: KeyboardEvent) => {
     // disables page scrolling with keyboard arrows
@@ -42,5 +47,5 @@ export const Game = () => {
     };
   }, [throttledHandleKeyDown]);
 
-  return <Board tiles={tiles} tileCountPerRow={tileCount} />;
+  return <Board tiles={tiles} tileCountPerRow={tileCount} {...handlers}/>;
 };
