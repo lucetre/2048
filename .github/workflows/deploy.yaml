@@ -23,7 +23,7 @@ jobs:
           node-version: 16.x
 
       - name: Install NPM packages
-        run: npm install
+        run: npm install && npm update caniuse-lite browserslist
 
       - name: Build project
         run: npm run build
