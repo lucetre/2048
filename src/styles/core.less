@@ -1,5 +1,9 @@
 @import "variables.less";
 
+html {
+  height: 100%
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,6 +15,7 @@ body {
   color: #776e65;
   font-size: @pixel-size * 2.25;
   line-height: @pixel-size * 3.5;
+  height: 100%;
 }
 
 h1 {
@@ -24,4 +29,8 @@ a {
   &:hover {
     text-decoration: none;
   }
+}
+
+div#root {
+  height: 100%;
 }

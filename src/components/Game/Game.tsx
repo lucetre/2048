@@ -53,8 +53,9 @@ export const Game = () => {
   }, [throttledHandleKeyDown]);
 
   return (
-    <div {...handlers}>
+    <>
+      <div className="touch-area" {...handlers} />
       <Board tiles={tiles} tileCountPerRow={tileCount} />
-    </div>
+    </>
   );
 };
