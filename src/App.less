@@ -3,7 +3,8 @@
 .App {
   max-width: @pixel-size * 60;
   margin: @pixel-size * 0 auto;
-  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
 
   .header {
     display: flex;
@@ -13,9 +14,15 @@
       flex: 1;
     }
 
+    .button-area {
+      float: right;
+      max-width: fit-content;
+      margin: @pixel-size * 3.25 0 auto auto;
+      z-index: 4;
+    }
+
     .button {
       float: right;
-      margin: @pixel-size * 3.25 @pixel-size * 0;
     }
   }
 

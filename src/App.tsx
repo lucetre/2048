@@ -18,7 +18,7 @@ export const App = () => {
         <div>
           <h1>Play 2048</h1>
         </div>
-        <div>
+        <div className="button-area">
           <Button onClick={handleRestart}>Restart</Button>
         </div>
       </div>
