@@ -8,9 +8,14 @@ import { useSwipeable } from "react-swipeable";
 export const Game = () => {
   const [tiles, moveLeft, moveRight, moveUp, moveDown] = useGame();
 
-  // const handlers = useSwipeable({
-  //   onSwiped: (eventData) => console.log("User Swiped!", eventData),
-  // });
+  const handlers = useSwipeable({
+    onSwipedLeft: moveLeft,
+    onSwipedRight: moveRight,
+    onSwipedUp: moveUp,
+    onSwipedDown: moveDown,
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
 
   const handleKeyDown = (e: KeyboardEvent) => {
     // disables page scrolling with keyboard arrows
@@ -47,5 +52,9 @@ export const Game = () => {
     };
   }, [throttledHandleKeyDown]);
 
-  return <Board tiles={tiles} tileCountPerRow={tileCount} {...handlers}/>;
+  return (
+    <div {...handlers}>
+      <Board tiles={tiles} tileCountPerRow={tileCount} />
+    </div>
+  );
 };
