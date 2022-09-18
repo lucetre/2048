@@ -1,12 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useThrottledCallback } from "use-debounce";
 
 import { useGame } from "./hooks/useGame";
+import { Helper } from "../../services/helper";
 import { Board, animationDuration, tileCount } from "../Board";
 import { useSwipeable } from "react-swipeable";
 
-export const Game = () => {
+export const Game = ({ think, setThink, hintAct, setHintAct }: any) => {
   const [tiles, moveLeft, moveRight, moveUp, moveDown] = useGame();
+  const [tileCnt, setTileCnt] = useState(0);
+  const [hintMode, setHintMode] = useState(false);
+
+  useEffect(() => {
+    if (hintAct) {
+      switch (think) {
+        case "Up ⬆️":
+          moveUp();
+          break;
+        case "Right ➡️":
+          moveRight();
+          break;
+        case "Down ⬇️":
+          moveDown();
+          break;
+        case "Left ⬅️":
+          moveLeft();
+          break;
+      }
+      setHintAct(false);
+    }
+  }, [hintAct, setHintAct, think, moveUp, moveRight, moveDown, moveLeft]);
+
+  useEffect(() => {
+    if (setThink) {
+      setHintMode(true);
+      setTileCnt(tiles.length - 1);
+    }
+    if (hintMode) {
+      // console.log(tiles.length, tileCnt);
+      if (tiles.length === tileCnt + 1) {
+        // console.log("guess");
+        const bestMove = new Helper(tiles).think();
+        setThink(bestMove);
+      }
+      setTileCnt(tiles.length);
+    }
+  }, [tiles, setThink, tileCnt, hintMode]);
 
   const handlers = useSwipeable({
     onSwipedLeft: moveLeft,
@@ -55,6 +94,7 @@ export const Game = () => {
   return (
     <>
       <div className="touch-area" {...handlers} />
+      {/* <img src={process.env.PUBLIC_URL + "/arrow-up.gif"} alt="up" /> */}
       <Board tiles={tiles} tileCountPerRow={tileCount} />
     </>
   );
