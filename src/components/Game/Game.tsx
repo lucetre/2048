@@ -98,7 +98,6 @@ export const Game = ({ think, setThink, hintAct, setHintAct, setDisabled }: any)
   return (
     <>
       <div className="touch-area" {...handlers} />
-      {/* <img src={process.env.PUBLIC_URL + "/arrow-up.gif"} alt="up" /> */}
       <Board tiles={tiles} tileCountPerRow={tileCount} />
     </>
   );

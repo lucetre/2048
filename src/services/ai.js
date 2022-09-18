@@ -20,7 +20,7 @@ net.makeLayers(layer_defs);
 //   document.getElementById("ai-info").innerHTML =
 //     "Downloading model......(about 25M). <br /><strong>NN AI won't work until the model is loaded</strong><div class='progress-container'><div class='progressbar' id='progressbar' style='width: 0%'></div></div>";
 var oReq = new XMLHttpRequest();
-oReq.open("GET", "https://lucetre.github.io/2048/NN/model.bin", true);
+oReq.open("GET", "https://lucetre.github.io/2048/model.bin", true);
 oReq.responseType = "arraybuffer";
 //   var updateProgress = function (oEvent) {
 //     var pb = document.getElementById("progressbar");
