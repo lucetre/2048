@@ -9,6 +9,7 @@ export const App = () => {
   const [date, setDate] = useState<Date>(new Date());
   const [think, setThink] = useState<string>("Think");
   const [hintAct, setHintAct] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleThink = () => {
     alert("Let me give you some hints!");
@@ -29,10 +30,10 @@ export const App = () => {
     <div className="App">
       <div className="header">
         <div>
-          <h1>Play 2048</h1>
+          <h1>2048-NN</h1>
         </div>
         <div className="button-area">
-          <Button onClick={think === "Think" ? handleThink : handleHint}>
+          <Button onClick={think === "Think" ? handleThink : handleHint} disabled={disabled}>
             {think}
           </Button>
         </div>
@@ -46,6 +47,7 @@ export const App = () => {
         setThink={think === "Think" ? null : setThink}
         hintAct={hintAct}
         setHintAct={setHintAct}
+        setDisabled={setDisabled}
       />
     </div>
   );

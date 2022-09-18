@@ -321,11 +321,12 @@ export const useGame = () => {
   const moveUp = moveUpFactory();
   const moveDown = moveDownFactory();
 
-  return [tileList, moveLeft, moveRight, moveUp, moveDown] as [
+  return [tileList, moveLeft, moveRight, moveUp, moveDown, inMotion] as [
     TileMeta[],
     () => void,
     () => void,
     () => void,
-    () => void
+    () => void,
+    boolean
   ];
 };

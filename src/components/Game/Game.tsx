@@ -6,10 +6,14 @@ import { Helper } from "../../services/helper";
 import { Board, animationDuration, tileCount } from "../Board";
 import { useSwipeable } from "react-swipeable";
 
-export const Game = ({ think, setThink, hintAct, setHintAct }: any) => {
-  const [tiles, moveLeft, moveRight, moveUp, moveDown] = useGame();
+export const Game = ({ think, setThink, hintAct, setHintAct, setDisabled }: any) => {
+  const [tiles, moveLeft, moveRight, moveUp, moveDown, inMotion] = useGame();
   const [tileCnt, setTileCnt] = useState(0);
   const [hintMode, setHintMode] = useState(false);
+
+  useEffect(() => {
+    setDisabled(inMotion);
+  }, [inMotion, setDisabled]);
 
   useEffect(() => {
     if (hintAct) {
