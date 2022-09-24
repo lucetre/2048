@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build and Deploy app to GitHub Pages
-        uses: lucetre/build-deploy-gh-pages@latest
+        uses: lucetre/build-deploy-gh-pages@v0.3
         with:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
