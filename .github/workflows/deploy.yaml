@@ -1,54 +1,16 @@
-name: Build & deploy
+name: Build and Deploy
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    branches: [main]
 
 jobs:
-  build:
-    name: Build
+  build-deploy-gh-pages:
+    name: Build and Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - name: Build and Deploy app to GitHub Pages
+        uses: lucetre/build-deploy-gh-pages@latest
         with:
-          node-version: 16.x
-
-      - name: Install NPM packages
-        run: npm install && npm update caniuse-lite browserslist
-
-      - name: Build project
-        run: npm run build
-
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./build
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: production-files
-          path: ./build
-
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
